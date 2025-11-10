@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio — MediCare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+    <body>
+        <!-- Barra de accesibilidad: aumenta/disminuye/restablece fuente, alto contraste, lector de voz -->
+        <div class="accessibility-bar" aria-hidden="false">
+            <button id="increaseFontSize" class="btn btn-sm btn-outline-secondary" title="Aumentar tamaño de fuente">A+</button>
+            <button id="decreaseFontSize" class="btn btn-sm btn-outline-secondary" title="Disminuir tamaño de fuente">A-</button>
+            <button id="resetFontSize" class="btn btn-sm btn-outline-secondary" title="Restablecer tamaño de fuente">Restablecer</button>
+            <button id="toggleHighContrast" class="btn btn-sm btn-outline-dark" title="Alternar alto contraste">Alto contraste</button>
+            <button id="toggleVoiceReader" class="btn btn-sm btn-outline-primary" title="Leer página">Leer</button>
+        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="landing.html">
+                <img src="img/citamed-logo-white.png" alt="CitaMed Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="landing.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pacientes.html">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="citas.html">Citas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="historiales.html">Historiales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="configuracion.html">Configuración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <!-- Contenido de landing (copia de pages/landing.html) -->
+        <section id="inicio" class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1>Tu salud es nuestra prioridad</h1>
+                        <p>Sistema de gestión de citas médicas fácil y accesible para todos</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <a href="citas.html" class="btn btn-primary btn-lg">Agendar Cita</a>
+                            <button id="leaveContactBtn" class="btn btn-outline-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">Déjanos tus datos</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="img/medicos atendiendo.jpg" alt="Médicos atendiendo" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Nuestros Servicios</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card service-card">
+                            <div class="card-body">
+                                <i class="fas fa-calendar-check"></i>
+                                <h3>Citas en línea</h3>
+                                <p>Agenda tus citas médicas de forma rápida y sencilla</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card service-card">
+                            <div class="card-body">
+                                <i class="fas fa-user-md"></i>
+                                <h3>Especialistas</h3>
+                                <p>Accede a un amplio equipo de profesionales de la salud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card service-card">
+                            <div class="card-body">
+                                <i class="fas fa-history"></i>
+                                <h3>Historial Médico</h3>
+                                <p>Mantén un registro de tus consultas y tratamientos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>MediCare</h5>
+                    <p>Sistema de gestión de citas médicas</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="landing.html">Inicio</a></li>
+                        <li><a href="citas.html">Citas</a></li>
+                        <li><a href="pacientes.html">Pacientes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fas fa-phone"></i> +51 123 456 789<br>
+                        <i class="fas fa-envelope"></i> info@medicare.com<br>
+                        <i class="fas fa-location-dot"></i> Av. Principal 123, Lima
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="js/accessibility.js"></script>
+    <!-- Modal pedir datos de contacto al cargar la landing -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">¿Quieres que te contactemos?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="contactForm">
+                    <div class="modal-body">
+                        <p>Déjanos unos datos y te contactaremos para ayudarte a agendar tu cita.</p>
+                        <div class="mb-3">
+                            <label for="c-name" class="form-label">Nombre completo</label>
+                            <input type="text" id="c-name" class="form-control" required aria-required="true">
+                        </div>
+                        <div class="mb-3">
+                            <label for="c-phone" class="form-label">Teléfono</label>
+                            <input type="tel" id="c-phone" class="form-control" placeholder="Ej: 987654321" required aria-required="true">
+                        </div>
+                        <div class="mb-3">
+                            <label for="c-email" class="form-label">Email (opcional)</label>
+                            <input type="email" id="c-email" class="form-control" placeholder="tu@correo.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="c-prefer" class="form-label">¿Cómo prefieres que te contactemos?</label>
+                            <select id="c-prefer" class="form-select">
+                                <option value="phone">Teléfono</option>
+                                <option value="email">Email</option>
+                                <option value="whatsapp">WhatsApp</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="c-message" class="form-label">Mensaje (opcional)</label>
+                            <textarea id="c-message" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="c-consent" required aria-required="true">
+                            <label class="form-check-label" for="c-consent">Acepto que me contacten para agendar una cita.</label>
+                        </div>
+                        <div id="contactAlert" class="alert d-none" role="alert"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar y que me contacten</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal al cargar la landing solo si no lo envió antes (control por sessionStorage)
+        document.addEventListener('DOMContentLoaded', function(){
+            try {
+                const shown = sessionStorage.getItem('contactModalShown');
+                if (!shown) {
+                    var contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
+                    contactModal.show();
+                    sessionStorage.setItem('contactModalShown', '1');
+                }
+
+                const form = document.getElementById('contactForm');
+                const alertEl = document.getElementById('contactAlert');
+                form.addEventListener('submit', function(ev){
+                    ev.preventDefault();
+                    // simple validation
+                    const name = document.getElementById('c-name').value.trim();
+                    const phone = document.getElementById('c-phone').value.trim();
+                    const email = document.getElementById('c-email').value.trim();
+                    const prefer = document.getElementById('c-prefer').value;
+                    const message = document.getElementById('c-message').value.trim();
+                    const consent = document.getElementById('c-consent').checked;
+                    if (!name || !phone || !consent) {
+                        alertEl.className = 'alert alert-warning';
+                        alertEl.textContent = 'Por favor completa tu nombre, teléfono y acepta ser contactado.';
+                        alertEl.classList.remove('d-none');
+                        return;
+                    }
+
+                    // save to localStorage as a simple queue
+                    try {
+                        const key = 'contactRequests';
+                        const prev = JSON.parse(localStorage.getItem(key) || '[]');
+                        prev.push({ name, phone, email, prefer, message, date: new Date().toISOString() });
+                        localStorage.setItem(key, JSON.stringify(prev));
+                    } catch (e) { console.warn('save contact error', e); }
+
+                    // show success and close modal
+                    alertEl.className = 'alert alert-success';
+                    alertEl.textContent = 'Gracias — hemos registrado tus datos. Te contactaremos pronto.';
+                    alertEl.classList.remove('d-none');
+                    setTimeout(()=>{
+                        const modalEl = document.getElementById('contactModal');
+                        const modal = bootstrap.Modal.getInstance(modalEl);
+                        if (modal) modal.hide();
+                    }, 1200);
+                });
+            } catch (e) { console.warn(e); }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* Estilos específicos para las páginas */
+/* Citas */
+.appointment-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.appointment-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.appointment-time {
+    min-width: 80px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.appointment-info {
+    flex-grow: 1;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* Historiales */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    padding: 20px;
+    border-left: 2px solid var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.timeline-date {
+    position: absolute;
+    left: -100px;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.timeline-content {
+    margin-left: 20px;
+}
+
+.timeline-attachments {
+    margin-top: 10px;
+}
+
+/* Configuración */
+.nav-pills .nav-link {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-pills .nav-link i {
+    width: 20px;
+}
+
+/* Estilos para modo de alto contraste */
+.high-contrast .timeline-item {
+    border-left-color: #fff;
+}
+
+.high-contrast .appointment-time {
+    color: #fff;
+}
+
+.high-contrast .nav-pills .nav-link {
+    color: #fff;
+}
+
+.high-contrast .nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .timeline-date {
+        position: relative;
+        left: 0;
+        margin-bottom: 10px;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+
+    .appointment-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .appointment-actions {
+        margin-top: 10px;
+    }
+}

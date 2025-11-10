@@ -1,0 +1,123 @@
+/* Estilos del Dashboard */
+.dashboard-body {
+    background-color: #f8f9fa;
+}
+
+/* Sidebar */
+.sidebar {
+    min-height: 100vh;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem 0;
+    border-radius: 0.25rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card .card-title {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-card .card-text {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Perfil */
+.profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+/* Calendario */
+#calendar {
+    min-height: 400px;
+}
+
+/* Lista de citas */
+.list-group-item h6 {
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.list-group-item p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        z-index: 100;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Alto contraste para el dashboard */
+.high-contrast .sidebar {
+    background-color: #222;
+}
+
+.high-contrast .sidebar .nav-link {
+    color: white;
+}
+
+.high-contrast .stat-card {
+    background-color: #333;
+    color: white;
+}
+
+.high-contrast .stat-card .card-title {
+    color: #fff;
+}
+
+.high-contrast .list-group-item {
+    background-color: #333;
+    color: white;
+    border-color: #444;
+}

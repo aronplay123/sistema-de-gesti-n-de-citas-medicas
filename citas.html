@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas — MediCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/main.min.css' rel='stylesheet' />
+</head>
+    <body>
+        <!-- Barra de accesibilidad -->
+        <div class="accessibility-bar" aria-hidden="false">
+            <button id="increaseFontSize" class="btn btn-sm btn-outline-secondary" title="Aumentar tamaño de fuente">A+</button>
+            <button id="decreaseFontSize" class="btn btn-sm btn-outline-secondary" title="Disminuir tamaño de fuente">A-</button>
+            <button id="resetFontSize" class="btn btn-sm btn-outline-secondary" title="Restablecer tamaño de fuente">Restablecer</button>
+            <button id="toggleHighContrast" class="btn btn-sm btn-outline-dark" title="Alternar alto contraste">Alto contraste</button>
+            <button id="toggleVoiceReader" class="btn btn-sm btn-outline-primary" title="Leer página">Leer</button>
+        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="landing.html"><img src="img/citamed-logo-white.png" alt="CitaMed" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="landing.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pacientes.html">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="citas.html">Citas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="historiales.html">Historiales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="configuracion.html">Configuración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <!-- Contenido de pages/citas.html -->
+        <h2 class="mb-4">Gestión de Citas</h2>
+        <div class="row mb-4 g-3">
+            <div class="col-12 col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar citas...">
+                    <button class="btn btn-primary" type="button" aria-label="Buscar">Buscar</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 text-md-end">
+                <a class="btn btn-success w-100 w-md-auto" href="#newAppointmentModal" data-bs-toggle="modal" aria-label="Nueva Cita">
+                    <i class="fas fa-plus"></i> Nueva Cita
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card"><div class="card-body"><div id="appointmentCalendar"></div></div></div>
+            </div>
+            <div class="col-md-4">
+                <div class="card"><div class="card-header"><h5 class="card-title mb-0">Próximas Citas</h5></div>
+                <div class="card-body"><div class="appointment-list"><div class="appointment-item"><div class="appointment-time">09:00 AM</div>
+                <div class="appointment-info"><h6>Juan Pérez</h6><p>Consulta General</p></div></div></div></div></div>
+            </div>
+        </div>
+
+        <!-- Modal nueva cita -->
+        <div class="modal fade" id="newAppointmentModal" tabindex="-1">
+            <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
+                <h5 class="modal-title">Nueva Cita</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><form id="appointmentForm">
+                    <input type="hidden" id="appointmentId">
+                    <div class="mb-3"><label class="form-label">Paciente</label><select id="patientName" class="form-select"><option>Seleccionar paciente</option></select></div>
+                    <div class="mb-3"><label class="form-label">Fecha</label><input type="date" id="appointmentDate" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label">Hora</label><input type="time" id="appointmentTime" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label">Tipo de Consulta</label><select id="consultationType" class="form-select"><option>Consulta General</option><option>Emergencia</option><option>Especialidad</option><option>Seguimiento</option></select></div>
+                    <div class="mb-3">
+                        <label for="doctorSpecialty" class="form-label">Especialidad</label>
+                        <select class="form-select" id="doctorSpecialty">
+                            <option selected disabled>Seleccionar especialidad</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="doctorName" class="form-label">Médico</label>
+                        <select class="form-select" id="doctorName">
+                            <option selected disabled>Seleccionar médico</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"><label class="form-label">Notas</label><textarea id="appointmentNotes" class="form-control" rows="3"></textarea></div>
+                </form></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" form="appointmentForm" class="btn btn-primary">Guardar Cita</button></div></div></div>
+        </div>
+    </main>
+
+        <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>MediCare</h5>
+                    <p>Sistema de gestión de citas médicas</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="landing.html">Inicio</a></li>
+                        <li><a href="citas.html">Citas</a></li>
+                        <li><a href="pacientes.html">Pacientes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fas fa-phone"></i> +51 123 456 789<br>
+                        <i class="fas fa-envelope"></i> info@medicare.com<br>
+                        <i class="fas fa-location-dot"></i> Av. Principal 123, Lima
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/main.min.js'></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/citas.js"></script>
+    <script>
+        // Inicializar calendario si existe
+        document.addEventListener('DOMContentLoaded', function(){
+            const calEl = document.getElementById('appointmentCalendar');
+            if(calEl && typeof FullCalendar !== 'undefined'){
+                const calendar = new FullCalendar.Calendar(calEl, { initialView: 'dayGridMonth', height: 400, events: []});
+                calendar.render();
+            }
+        });
+    </script>
+</body>
+</html>

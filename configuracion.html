@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración — MediCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+    <body>
+        <!-- Barra de accesibilidad -->
+        <div class="accessibility-bar" aria-hidden="false">
+            <button id="increaseFontSize" class="btn btn-sm btn-outline-secondary" title="Aumentar tamaño de fuente">A+</button>
+            <button id="decreaseFontSize" class="btn btn-sm btn-outline-secondary" title="Disminuir tamaño de fuente">A-</button>
+            <button id="resetFontSize" class="btn btn-sm btn-outline-secondary" title="Restablecer tamaño de fuente">Restablecer</button>
+            <button id="toggleHighContrast" class="btn btn-sm btn-outline-dark" title="Alternar alto contraste">Alto contraste</button>
+            <button id="toggleVoiceReader" class="btn btn-sm btn-outline-primary" title="Leer página">Leer</button>
+        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="landing.html"><img src="img/citamed-logo-white.png" alt="CitaMed" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="landing.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pacientes.html">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="citas.html">Citas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="historiales.html">Historiales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="configuracion.html">Configuración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <h2 class="mb-4">Configuración del Sistema</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card"><div class="card-body"><div class="nav flex-column nav-pills" role="tablist">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#general">General</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#perfil">Perfil</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#horarios">Horarios</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#notificaciones">Notificaciones</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#seguridad">Seguridad</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#accesibilidad">Accesibilidad</button>
+                </div></div></div>
+            </div>
+            <div class="col-md-9"><div class="tab-content">
+                <div class="tab-pane fade show active" id="general"><div class="card"><div class="card-body">
+                    <h5 class="card-title">Configuración General</h5>
+                    <form><div class="mb-3"><label class="form-label">Nombre de la Clínica</label>
+                    <input type="text" class="form-control" value="MediCare"></div>
+                    <div class="mb-3"><label class="form-label">Zona Horaria</label><select class="form-select"><option>América/Lima</option></select></div>
+                    <div class="mb-3"><label class="form-label">Idioma del Sistema</label><select class="form-select"><option>Español</option><option>English</option></select></div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button></form></div></div></div>
+                <div class="tab-pane fade" id="perfil"><div class="card"><div class="card-body">
+                    <h5 class="card-title">Perfil del Usuario</h5>
+                    <form><div class="mb-3"><label class="form-label">Foto de Perfil</label>
+                    <div class="d-flex align-items-center"><img src="assets/profile-placeholder.jpg" alt="Perfil" class="rounded-circle me-3" style="width:64px;height:64px;"><input type="file" class="form-control"></div></div>
+                    <div class="row"><div class="col-md-6 mb-3"><label>Nombre</label><input class="form-control"></div><div class="col-md-6 mb-3"><label>Apellido</label><input class="form-control"></div></div>
+                    <div class="mb-3"><label>Email</label><input type="email" class="form-control"></div><button class="btn btn-primary">Actualizar Perfil</button></form></div></div></div>
+                <div class="tab-pane fade" id="accesibilidad"><div class="card"><div class="card-body">
+                    <h5 class="card-title">Configuración de Accesibilidad</h5>
+                    <form><div class="mb-3"><label>Tamaño de Fuente Base</label><select class="form-select"><option>Normal (16px)</option><option>Grande (18px)</option></select></div>
+                    <div class="mb-3 form-check form-switch"><input class="form-check-input" type="checkbox" id="highContrast"><label class="form-check-label" for="highContrast">Modo Alto Contraste</label></div>
+                    <button class="btn btn-primary">Guardar Preferencias</button></form></div></div></div>
+            </div></div>
+        </div>
+    </main>
+        <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>MediCare</h5>
+                    <p>Sistema de gestión de citas médicas</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="landing.html">Inicio</a></li>
+                        <li><a href="citas.html">Citas</a></li>
+                        <li><a href="pacientes.html">Pacientes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fas fa-phone"></i> +51 123 456 789<br>
+                        <i class="fas fa-envelope"></i> info@medicare.com<br>
+                        <i class="fas fa-location-dot"></i> Av. Principal 123, Lima
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

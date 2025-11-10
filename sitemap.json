@@ -1,0 +1,11 @@
+{
+  "site": "MediCare",
+  "pages": [
+  { "path": "landing.html", "title": "Inicio", "role": "public" },
+  { "path": "citas.html", "title": "Citas", "role": "receptionist|doctor" },
+  { "path": "pacientes.html", "title": "Pacientes", "role": "receptionist|doctor" },
+  { "path": "historiales.html", "title": "Historiales", "role": "doctor" },
+  { "path": "dashboard.html", "title": "Dashboard", "role": "admin|manager" },
+  { "path": "configuracion.html", "title": "Configuración", "role": "admin" }
+  ]
+}
