@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const newRecordModal = document.getElementById('newRecordModal');
     const patientListContainer = document.querySelector('.list-group');
     const timelineContainer = document.querySelector('.timeline');
-    const patientSelect = newRecordModal.querySelector('#recordPatient');
+    const patientSelect = newRecordModal ? newRecordModal.querySelector('#recordPatient') : null;
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
 
     let medicalRecords = JSON.parse(localStorage.getItem('medicalRecords')) || [];
     let patients = JSON.parse(localStorage.getItem('patients')) || [];
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item.innerHTML = `
                 <div class="d-flex w-100 justify-content-between">
                     <h6 class="mb-1">${patient.firstName} ${patient.lastName}</h6>
+                    <small>${patient.age || ''} años</small>
                 </div>
                 <small>DNI: ${patient.dni}</small>
             `;
@@ -66,47 +69,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loadPatientsForModal = () => {
         const patients = JSON.parse(localStorage.getItem('patients')) || [];
-        patientSelect.innerHTML = '<option value="" selected disabled>Seleccionar paciente</option>';
-        patients.forEach(patient => {
-            const option = document.createElement('option');
-            option.value = patient.id;
-            option.textContent = `${patient.firstName} ${patient.lastName}`;
-            patientSelect.appendChild(option);
-        });
+        if (patientSelect) {
+            patientSelect.innerHTML = '<option value="" selected disabled>Seleccionar paciente</option>';
+            patients.forEach(patient => {
+                const option = document.createElement('option');
+                option.value = patient.id;
+                option.textContent = `${patient.firstName} ${patient.lastName}`;
+                patientSelect.appendChild(option);
+            });
+        }
     };
 
-    newRecordModal.addEventListener('show.bs.modal', () => {
-        loadPatients();
-    });
+    if (newRecordModal) {
+        newRecordModal.addEventListener('show.bs.modal', () => {
+            loadPatientsForModal();
+        });
+    }
+
+    // Búsqueda de pacientes
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            const query = searchInput.value.toLowerCase().trim();
+            const allPatients = document.querySelectorAll('.list-group-item');
+            let found = false;
+
+            allPatients.forEach(item => {
+                const patientName = item.querySelector('h6').textContent.toLowerCase();
+                if (query === '' || patientName.includes(query)) {
+                    item.style.display = '';
+                    if (patientName.includes(query) && query !== '') {
+                        item.click();
+                        found = true;
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (!found && query !== '') {
+                alert('Paciente no encontrado');
+            }
+        });
+
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
 
     const medicalRecordForm = document.getElementById('medicalRecordForm');
-    medicalRecordForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    if (medicalRecordForm) {
+        medicalRecordForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        const newRecord = {
-            id: Date.now(),
-            patientId: document.getElementById('recordPatient').value,
-            date: document.getElementById('recordDate').value,
-            type: document.getElementById('recordType').value,
-            diagnosis: document.getElementById('recordDiagnosis').value,
-            treatment: document.getElementById('recordTreatment').value,
-            notes: document.getElementById('recordNotes').value,
-            files: [] // File handling not implemented yet
-        };
+            const newRecord = {
+                id: Date.now(),
+                patientId: document.getElementById('recordPatient').value,
+                date: document.getElementById('recordDate').value,
+                type: document.getElementById('recordType').value,
+                diagnosis: document.getElementById('recordDiagnosis').value,
+                treatment: document.getElementById('recordTreatment').value,
+                notes: document.getElementById('recordNotes').value,
+                files: []
+            };
 
-        medicalRecords.push(newRecord);
-        localStorage.setItem('medicalRecords', JSON.stringify(medicalRecords));
+            medicalRecords.push(newRecord);
+            localStorage.setItem('medicalRecords', JSON.stringify(medicalRecords));
 
-        alert('Registro médico guardado con éxito.');
-        medicalRecordForm.reset();
-        const modal = bootstrap.Modal.getInstance(newRecordModal);
-        modal.hide();
+            alert('Registro médico guardado con éxito.');
+            medicalRecordForm.reset();
+            const modal = bootstrap.Modal.getInstance(newRecordModal);
+            modal.hide();
 
-        // Refresh timeline
-        if (newRecord.patientId === selectedPatientId) {
-            renderTimeline(selectedPatientId);
-        }
-    });
+            // Refresh timeline
+            if (newRecord.patientId === selectedPatientId) {
+                renderTimeline(selectedPatientId);
+            }
+        });
+    }
 
     renderPatientList();
 });
