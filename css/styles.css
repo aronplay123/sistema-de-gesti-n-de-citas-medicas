@@ -224,3 +224,60 @@ footer a:hover {
 }
 
 
+.high-contrast .modal-content {
+    background-color: #1f1f1f !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* Header */
+.high-contrast .modal-header {
+    background-color: #262626 !important;
+    border-bottom-color: #444 !important;
+}
+
+.high-contrast .modal-title {
+    color: #ffffff !important;
+}
+
+/* Body */
+.high-contrast .modal-body label {
+    color: #ffffff !important;
+}
+
+/* Inputs, selects y textarea */
+.high-contrast .modal-body .form-control,
+.high-contrast .modal-body .form-select {
+    background-color: #333 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
+}
+
+.high-contrast .modal-body .form-control::placeholder {
+    color: #bbbbbb !important;
+}
+
+/* Footer */
+.high-contrast .modal-footer {
+    background-color: #262626 !important;
+    border-top-color: #444 !important;
+}
+
+/* Botón cerrar (X) */
+.high-contrast .btn-close {
+    filter: invert(1) brightness(2);
+}
+
+/* Botones del modal */
+.high-contrast .modal-footer .btn-secondary {
+    background-color: #444 !important;
+    color: #fff !important;
+    border-color: #666 !important;
+}
+
+.high-contrast .modal-footer .btn-primary {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+    color: #fff !important;
+}

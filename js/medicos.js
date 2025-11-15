@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Dr. Carlos Ruiz',
             specialty: 'Pediatría',
             location: 'Sede Central',
-            image: 'img/doctor1.png'
+            image: 'img/doctor2.jpg'
         },
         {
             id: 4,
