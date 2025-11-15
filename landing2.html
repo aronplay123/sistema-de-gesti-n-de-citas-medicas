@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio — MediCare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .why-choose-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .why-choose-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .why-choose-left {
+            flex: 1;
+        }
+        .why-choose-left h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .why-choose-left p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        .jci-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .jci-badge-icon {
+            font-size: 3rem;
+            color: #ffc107;
+        }
+        .video-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255,255,255,0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .jci-badge i {
+            color: #0d6efd;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+        .clinic-info-section {
+            background-color: white;
+            padding: 60px 0;
+        }
+        .clinic-info-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        .clinic-info-left, .clinic-info-right {
+            flex: 1;
+        }
+        .clinic-info-left h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .clinic-info-left p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        .clinic-info-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .clinic-info-center .video-wrapper {
+            max-width: 350px;
+        }
+        .clinic-info-right h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .clinic-info-right p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        .clinic-highlights {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+        .clinic-highlights li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .clinic-highlights li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0d6efd;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 1024px) {
+            .clinic-info-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+    <body>
+        <!-- Barra de accesibilidad: aumenta/disminuye/restablece fuente, alto contraste, lector de voz -->
+        <div class="accessibility-bar" aria-hidden="false">
+            <button id="increaseFontSize" class="btn btn-sm btn-outline-secondary" title="Aumentar tamaño de fuente">A+</button>
+            <button id="decreaseFontSize" class="btn btn-sm btn-outline-secondary" title="Disminuir tamaño de fuente">A-</button>
+            <button id="resetFontSize" class="btn btn-sm btn-outline-secondary" title="Restablecer tamaño de fuente">Restablecer</button>
+            <button id="toggleHighContrast" class="btn btn-sm btn-outline-dark" title="Alternar alto contraste">Alto contraste</button>
+            <button id="toggleVoiceReader" class="btn btn-sm btn-outline-primary" title="Leer página">Leer</button>
+        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="landing.html">
+                <img src="img/citamed-logo-white.png" alt="CitaMed Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="landing.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="landing2.html">Información</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pacientes.html">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="citas.html">Citas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="historiales.html">Historiales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="configuracion.html">Configuración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <!-- Sección: Información con video en el medio -->
+        <section class="why-choose-section">
+            <div class="container">
+                <div class="clinic-info-content">
+                    <!-- Izquierda: Pregunta y descripción -->
+                    <div class="clinic-info-left">
+                        <h3>¿Por qué elegirnos?</h3>
+                        <p>Nuestras sedes de Lima están acreditadas con la máxima distinción internacional otorgada a una entidad de salud. Además, contamos con una nueva sede en La Victoria que ofrece atención médica de primer nivel.</p>
+                        <div class="jci-badge">
+                            <div class="jci-badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div>
+                                <h5 style="margin-bottom: 0; color: #333;">Joint Commission International</h5>
+                                <p style="margin-bottom: 0; color: #666; font-size: 0.95rem;">Certificación de excelencia médica</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Centro: Video -->
+                    <div class="clinic-info-center">
+                        <div class="ratio ratio-16x9" style="max-width: 400px;">
+                            <iframe src="https://www.youtube.com/embed/JAAipPls7Bs" title="Video de YouTube" allowfullscreen="" loading="lazy" style="border-radius: 12px;"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Derecha: Información de la clínica -->
+                    <div class="clinic-info-right">
+                        <h3>Clínica San Pablo La Victoria</h3>
+                        <p>Abrirá una nueva sede con <strong>8344 m²</strong>, 12 pisos y 6 sótanos, ofreciendo atención médica de primer nivel.</p>
+                        <ul class="clinic-highlights">
+                            <li>Servicios ambulatorios y hospitalarios</li>
+                            <li>29 tópicos de emergencia</li>
+                            <li>UCI neonatal, pediátrica y adulta</li>
+                            <li>Tecnología avanzada para la salud</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>CitaMed</h5>
+                    <p>Sistema de gestión de citas médicas</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="landing.html">Inicio</a></li>
+                        <li><a href="landing2.html">Información</a></li>
+                        <li><a href="citas.html">Citas</a></li>
+                        <li><a href="pacientes.html">Pacientes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fas fa-phone"></i> +51 123 456 789<br>
+                        <i class="fas fa-envelope"></i> info@medicare.com<br>
+                        <i class="fas fa-location-dot"></i> Av. Principal 123, Lima
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="js/accessibility.js"></script>
+</body>
+</html>
