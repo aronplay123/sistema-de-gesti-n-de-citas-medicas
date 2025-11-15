@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Médicos — MediCare</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard_medico.css">
+
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/main.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/main.min.css' rel='stylesheet' />
+</head>
+<body>
+  
+  <!-- Barra de accesibilidad -->
+  <div class="accessibility-bar" aria-hidden="false">
+      <button id="increaseFontSize" class="btn btn-sm btn-outline-secondary">A+</button>
+      <button id="decreaseFontSize" class="btn btn-sm btn-outline-secondary">A-</button>
+      <button id="resetFontSize" class="btn btn-sm btn-outline-secondary">Restablecer</button>
+      <button id="toggleHighContrast" class="btn btn-sm btn-outline-dark">Alto contraste</button>
+      <button id="toggleVoiceReader" class="btn btn-sm btn-outline-primary">Leer</button>
+  </div>
+
+  
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">
+        <img src="img/citamed-logo-white.png" alt="CitaMed" height="50">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pacientes.html">Pacientes</a></li>
+          <li class="nav-item"><a class="nav-link" href="citas.html">Citas</a></li>
+          <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
+          <li class="nav-item"><a class="nav-link" href="historiales.html">Historiales</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard Gestión</a></li>
+          <li class="nav-item"><a class="nav-link active" href="dashboard_medico.html">Dashboard Médicos</a></li>
+          <li class="nav-item"><a class="nav-link" href="configuracion.html">Configuración</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1>Dashboard Médicos</h1>
+      <div>
+        <button class="btn btn-sm btn-outline-secondary" id="shareDashboardMedBtn">Compartir</button>
+        <button class="btn btn-sm btn-outline-secondary" id="exportDashboardMedBtn">Exportar</button>
+      </div>
+    </div>
+
+    <!-- Tarjetas -->
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h5 class="card-title">Consultas del Día</h5>
+            <p class="card-text display-4" id="consultasDia">0</p>
+            <small class="text-muted">Actualizado hoy</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h5 class="card-title">Tareas Pendientes</h5>
+            <p class="card-text display-4" id="tareasPendientes">0</p>
+            <small class="text-muted">Asignadas este día</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h5 class="card-title">Pacientes Atendidos</h5>
+            <p class="card-text display-4" id="pacientesAtendidos">0</p>
+            <small class="text-muted">Últimas 24 horas</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h5 class="card-title">Nivel de Carga</h5>
+            <p class="card-text display-4" id="nivelCarga">0%</p>
+            <small class="text-muted">Promedio del día</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="row mt-4">
+
+      <div class="col-md-6 mb-4">
+        <div class="card"><div class="card-body">
+          <canvas id="chartConsultasPorHora"></canvas>
+        </div></div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card"><div class="card-body">
+          <canvas id="chartTareasTipo"></canvas>
+        </div></div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card"><div class="card-body">
+          <canvas id="chartPacientesPorEspecialidad"></canvas>
+        </div></div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card"><div class="card-body">
+          <canvas id="chartCargaSemanal"></canvas>
+        </div></div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <h5>CitaMed</h5>
+                  <p>Sistema de gestión médica</p>
+              </div>
+              <div class="col-md-4">
+                  <h5>Enlaces rápidos</h5>
+                  <ul class="list-unstyled">
+                      <li><a href="landing.html">Inicio</a></li>
+                      <li><a href="medicos.html">Médicos</a></li>
+                      <li><a href="citas.html">Citas</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h5>Contacto</h5>
+                  <p>+51 123 456 789<br>info@medicare.com</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="js/dashboard_medico.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+/* Body general */
+.dashboard-body {
+    background-color: #f8f9fa;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    min-height: 100vh;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 0.55rem 1rem;
+    margin: 0.25rem 0;
+    border-radius: 0.35rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+/* TITULOS */
+h2 {
+    color: #333;
+    font-weight: 700;
+}
+
+/* Estilo general para tarjetas del dashboard */
+.card,
+.stat-card,
+.chart-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 15px;
+}
+
+/* Tarjetas superiores */
+.stat-card {
+    background: #ffffff;
+    text-align: left;
+    padding: 20px;
+}
+
+.stat-card h6 {
+    color: #7d7d7d;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-card small {
+    color: #1f0000;
+    font-size: 0.85rem;
+}
+
+/* Tarjetas de gráficos */
+.chart-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chart-card h5 {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Gráficos */
+canvas {
+    width: 100% !important;
+    border-radius: 10px;
+}
+
+/* Botones superiores */
+.btn-outline-secondary {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -100%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 200;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Modo alto contraste */
+.high-contrast .sidebar {
+    background-color: #222;
+}
+
+.high-contrast .sidebar .nav-link {
+    color: white;
+}
+
+.high-contrast .card,
+.high-contrast .chart-card,
+.high-contrast .stat-card {
+    background-color: #333;
+    border-color: #555;
+    color: white;
+}
+
+.high-contrast h5,
+.high-contrast h2 {
+    color: white;
+}
