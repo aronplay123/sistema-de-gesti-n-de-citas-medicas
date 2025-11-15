@@ -7,19 +7,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleHighContrastBtn = document.getElementById('toggleHighContrast');
     const toggleVoiceReaderBtn = document.getElementById('toggleVoiceReader');
 
-    // Init font size from localStorage or computed style
-    const storedSize = parseInt(localStorage.getItem('mc_fontSize') || '0', 10);
-    let defaultFontSize = storedSize || parseInt(getComputedStyle(document.body).fontSize) || 16;
-    let currentFontSize = defaultFontSize;
-    // apply stored size
-    if (storedSize) document.body.style.fontSize = storedSize + 'px';
+    // Función para aplicar tamaño de fuente a todos los elementos
+    const applyFontSize = (size) => {
+        document.documentElement.style.setProperty('--font-size-base', size + 'px');
+        document.body.style.fontSize = size + 'px';
+        // Aplicar también a elementos principales
+        const mainElements = document.querySelectorAll('main, .container, section, article');
+        mainElements.forEach(el => {
+            el.style.fontSize = size + 'px';
+        });
+    };
+
+    // Init font size from localStorage
+    const storedSize = parseInt(localStorage.getItem('mc_fontSize') || '16', 10);
+    let currentFontSize = storedSize;
+    
+    // Apply stored size to root element and body
+    applyFontSize(currentFontSize);
 
     // Handlers (guard checks in case buttons are not present on a page)
     if (increaseFontBtn) {
         increaseFontBtn.addEventListener('click', function() {
             if (currentFontSize < 30) {
                 currentFontSize += 2;
-                document.body.style.fontSize = currentFontSize + 'px';
+                applyFontSize(currentFontSize);
                 localStorage.setItem('mc_fontSize', currentFontSize);
             }
         });
@@ -29,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         decreaseFontBtn.addEventListener('click', function() {
             if (currentFontSize > 10) {
                 currentFontSize -= 2;
-                document.body.style.fontSize = currentFontSize + 'px';
+                applyFontSize(currentFontSize);
                 localStorage.setItem('mc_fontSize', currentFontSize);
             }
         });
@@ -37,8 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (resetFontBtn) {
         resetFontBtn.addEventListener('click', function() {
-            currentFontSize = defaultFontSize;
+            currentFontSize = 16;
+            document.documentElement.style.setProperty('--font-size-base', '16px');
             document.body.style.fontSize = '';
+            // Resetear también los elementos principales
+            const mainElements = document.querySelectorAll('main, .container, section, article');
+            mainElements.forEach(el => {
+                el.style.fontSize = '';
+            });
             localStorage.removeItem('mc_fontSize');
         });
     }
