@@ -121,3 +121,21 @@
     color: white;
     border-color: #444;
 }
+
+.high-contrast h5,
+.high-contrast h2,
+.high-contrast h1 { 
+    color: white !important;
+}
+
+.high-contrast .stat-card .display-4 {
+    color: white !important; 
+}
+
+.high-contrast .stat-card small {
+    color: #cccccc !important; 
+}
+
+.high-contrast .card canvas {
+    background-color: transparent !important;
+}

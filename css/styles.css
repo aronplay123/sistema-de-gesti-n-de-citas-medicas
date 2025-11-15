@@ -127,3 +127,100 @@ footer a:hover {
     color: var(--primary-color);
     text-decoration: underline;
 }
+
+.high-contrast .card small,
+.high-contrast .stat-card small,
+.high-contrast .doctor-card small {
+    color: #ffffff !important;
+}
+
+/*video*/
+
+.high-contrast .why-choose-section,
+.high-contrast .clinic-info-section {
+    background-color: #1a1a1a !important;
+}
+
+.high-contrast .clinic-info-left h3,
+.high-contrast .clinic-info-left p,
+.high-contrast .clinic-info-right h3,
+.high-contrast .clinic-info-right p,
+.high-contrast .clinic-highlights li,
+
+
+.high-contrast .why-choose-left h2,
+.high-contrast .why-choose-left p {
+    color: #ffffff !important;
+}
+
+/* Tarjeta JCI */
+.high-contrast .jci-badge {
+    background-color: #333 !important;
+    box-shadow: none !important;
+}
+
+
+.high-contrast .form-control::placeholder {
+    color: #cccccc !important;
+}
+
+
+
+.high-contrast thead tr th {
+    background-color: #333 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
+}
+
+.high-contrast tbody tr td {
+    background-color: #2b2b2b !important;
+    border-color: #444 !important;
+    color: #ffffff !important;
+}
+
+
+
+/* Cada cita individual */
+.high-contrast .appointment-item {
+    background-color: #333 !important;
+    border: 1px solid #555 !important;
+    color: white !important;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+
+/* Información del paciente */
+.high-contrast .appointment-info h6,
+.high-contrast .appointment-info p {
+    color: #ffffff !important;
+}
+
+
+
+/* Lista de pacientes */
+.high-contrast .list-group-item {
+    background-color: #333 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
+}
+
+/* El item ACTIVO (que estaba azul arriba y blanco abajo) */
+.high-contrast .list-group-item.active {
+    background: linear-gradient(
+        to bottom,
+        #0d6efd 0%,
+        #0d6efd 50%    /* antes blanco → ahora oscuro */
+    ) !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+}
+
+/* DNI y textos dentro del rectángulo */
+.high-contrast .list-group-item.active small,
+.high-contrast .list-group-item small,
+.high-contrast .list-group-item h6 {
+    color: #ffffff !important;
+}
+
+
