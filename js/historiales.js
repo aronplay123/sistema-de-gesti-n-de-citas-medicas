@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const newRecordModal = document.getElementById('newRecordModal');
-    const patientListContainer = document.querySelector('.list-group');
-    const timelineContainer = document.querySelector('.timeline');
+    const patientListContainer = document.getElementById('patientsList');
+    const timelineContainer = document.getElementById('recordTimeline');
+    const recordTitleElement = document.getElementById('recordTitle');
     const patientSelect = newRecordModal ? newRecordModal.querySelector('#recordPatient') : null;
-    const searchInput = document.getElementById('searchInput');
+    const searchInput = document.getElementById('searchMedicalRecords');
     const searchBtn = document.getElementById('searchBtn');
 
     let medicalRecords = JSON.parse(localStorage.getItem('medicalRecords')) || [];
     let patients = JSON.parse(localStorage.getItem('patients')) || [];
     let selectedPatientId = null;
+    let filteredPatients = [...patients];
 
     const renderTimeline = (patientId) => {
         timelineContainer.innerHTML = '';
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const renderPatientList = () => {
         patientListContainer.innerHTML = '';
-        patients.forEach(patient => {
+        filteredPatients.forEach(patient => {
             const item = document.createElement('a');
             item.href = '#';
             item.className = 'list-group-item list-group-item-action';
@@ -55,17 +57,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedPatientId = patient.id;
                 document.querySelectorAll('.list-group-item').forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-                document.querySelector('.card-title.mb-0').textContent = `Historial Médico - ${patient.firstName} ${patient.lastName}`;
+                recordTitleElement.textContent = `Historial Médico - ${patient.firstName} ${patient.lastName}`;
                 renderTimeline(patient.id);
             });
             patientListContainer.appendChild(item);
         });
 
         // Auto-select first patient
-        if (patients.length > 0) {
+        if (filteredPatients.length > 0) {
             patientListContainer.firstChild.click();
         }
     };
+
+    // Función de búsqueda por nombre del paciente
+    const searchPatientByName = (searchTerm) => {
+        if (searchTerm.trim() === '') {
+            filteredPatients = [...patients];
+        } else {
+            filteredPatients = patients.filter(patient =>
+                `${patient.firstName} ${patient.lastName}`.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        renderPatientList();
+    };
+
+    // Evento para el botón de búsqueda
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            const searchTerm = searchInput.value;
+            searchPatientByName(searchTerm);
+        });
+    }
 
     const loadPatientsForModal = () => {
         const patients = JSON.parse(localStorage.getItem('patients')) || [];
@@ -83,38 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (newRecordModal) {
         newRecordModal.addEventListener('show.bs.modal', () => {
             loadPatientsForModal();
-        });
-    }
-
-    // Búsqueda de pacientes
-    if (searchBtn && searchInput) {
-        searchBtn.addEventListener('click', function() {
-            const query = searchInput.value.toLowerCase().trim();
-            const allPatients = document.querySelectorAll('.list-group-item');
-            let found = false;
-
-            allPatients.forEach(item => {
-                const patientName = item.querySelector('h6').textContent.toLowerCase();
-                if (query === '' || patientName.includes(query)) {
-                    item.style.display = '';
-                    if (patientName.includes(query) && query !== '') {
-                        item.click();
-                        found = true;
-                    }
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            if (!found && query !== '') {
-                alert('Paciente no encontrado');
-            }
-        });
-
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchBtn.click();
-            }
         });
     }
 

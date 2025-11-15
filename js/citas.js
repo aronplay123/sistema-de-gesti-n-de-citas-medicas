@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const patientSelect = document.getElementById('patientName');
     const specialtySelect = document.getElementById('doctorSpecialty');
     const doctorSelect = document.getElementById('doctorName');
+    const searchInput = document.getElementById('searchAppointments');
+    const searchBtn = document.getElementById('searchBtn');
     const newAppointmentModal = new bootstrap.Modal(document.getElementById('newAppointmentModal'));
 
     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     let patients = JSON.parse(localStorage.getItem('patients')) || [];
+    let filteredAppointments = [...appointments]; // Para almacenar los resultados filtrados
     const doctors = [
         { id: 1, name: 'Dr. Juan Pérez', specialty: 'Cardiología' },
         { id: 2, name: 'Dra. Ana Gómez', specialty: 'Dermatología' },
@@ -57,10 +60,35 @@ document.addEventListener('DOMContentLoaded', function () {
         specialtySelect.addEventListener('change', updateDoctors);
     }
 
+    // Función de búsqueda por nombre del paciente
+    const searchAppointmentsByPatient = (searchTerm) => {
+        if (searchTerm.trim() === '') {
+            filteredAppointments = [...appointments];
+        } else {
+            filteredAppointments = appointments.filter(apt =>
+                apt.patient.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        renderAppointments();
+    };
+
+    // Evento para el botón de búsqueda
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            const searchTerm = searchInput.value;
+            searchAppointmentsByPatient(searchTerm);
+        });
+    }
+
     const renderAppointments = () => {
         if (appointmentList) {
             appointmentList.innerHTML = '';
-            const sortedAppointments = [...appointments].sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${a.time}`));
+            const sortedAppointments = [...filteredAppointments].sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${a.time}`));
+            
+            if (sortedAppointments.length === 0) {
+                appointmentList.innerHTML = '<div class="alert alert-info">No hay citas que coincidan con la búsqueda.</div>';
+            }
+            
             sortedAppointments.forEach(appointment => {
                 const appointmentItem = document.createElement('div');
                 appointmentItem.className = 'appointment-item';
@@ -79,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (calendar) {
             calendar.removeAllEvents();
-            calendar.addEventSource(appointments.map(apt => ({
+            calendar.addEventSource(filteredAppointments.map(apt => ({
                 title: `${apt.patient} - ${apt.type} (${apt.doctor || 'N/A'})`,
                 start: `${apt.date}T${apt.time}`,
                 id: apt.id
@@ -145,6 +173,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             localStorage.setItem('appointments', JSON.stringify(appointments));
+            filteredAppointments = [...appointments]; // Restablecer filtro
+            if (searchInput) searchInput.value = ''; // Limpiar búsqueda
             renderAppointments();
             appointmentForm.reset();
             document.getElementById('appointmentId').value = '';
@@ -170,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const appointmentId = deleteButton.getAttribute('data-id');
                 appointments = appointments.filter(apt => apt.id != appointmentId);
                 localStorage.setItem('appointments', JSON.stringify(appointments));
+                filteredAppointments = [...appointments]; // Restablecer filtro
                 renderAppointments();
             }
         });

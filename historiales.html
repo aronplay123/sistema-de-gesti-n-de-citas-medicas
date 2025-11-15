@@ -43,8 +43,8 @@
         <div class="row mb-4 g-3">
             <div class="col-12 col-md-8">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar historiales...">
-                    <button class="btn btn-primary" aria-label="Buscar">Buscar</button>
+                    <input type="text" id="searchMedicalRecords" class="form-control" placeholder="Buscar por nombre del paciente...">
+                    <button class="btn btn-primary" id="searchBtn" aria-label="Buscar">Buscar</button>
                 </div>
             </div>
             <div class="col-12 col-md-4 text-md-end">
@@ -56,9 +56,9 @@
 
         <div class="row">
             <div class="col-md-4"><div class="card mb-4"><div class="card-header"><h5 class="card-title mb-0">Pacientes</h5></div>
-            <div class="card-body"><div class="list-group"><a href="#" class="list-group-item list-group-item-action active"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1">Juan Pérez</h6><small>45 años</small></div><small>DNI: 12345678</small></a></div></div></div></div>
-            <div class="col-md-8"><div class="card"><div class="card-header"><h5 class="card-title mb-0">Historial Médico - Juan Pérez</h5></div>
-            <div class="card-body"><div class="timeline"><div class="timeline-item"><div class="timeline-date">2023-11-01</div>
+            <div class="card-body"><div class="list-group" id="patientsList"><a href="#" class="list-group-item list-group-item-action active"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1">Juan Pérez</h6><small>45 años</small></div><small>DNI: 12345678</small></a></div></div></div></div>
+            <div class="col-md-8"><div class="card"><div class="card-header"><h5 class="card-title mb-0" id="recordTitle">Historial Médico - Juan Pérez</h5></div>
+            <div class="card-body"><div class="timeline" id="recordTimeline"><div class="timeline-item"><div class="timeline-date">2023-11-01</div>
             <div class="timeline-content"><h6>Consulta General</h6><p>Diagnóstico: Gripe estacional</p><p>Tratamiento: Paracetamol 500mg</p><p>Médico: Dr. García</p>
             <div class="timeline-attachments"><a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-file-pdf"></i> Resultados</a></div></div></div></div></div></div>
         </div>

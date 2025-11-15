@@ -1,26 +1,49 @@
 /* Estilos específicos para las páginas */
 /* Citas */
 .appointment-list {
-    max-height: 500px;
+    max-height: none;
     overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
 }
 
 .appointment-item {
     padding: 15px;
-    border-bottom: 1px solid #eee;
+    border: 1px solid #eee;
+    border-radius: 8px;
     display: flex;
-    align-items: center;
-    gap: 15px;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.appointment-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #fff;
 }
 
 .appointment-time {
-    min-width: 80px;
+    min-width: auto;
     font-weight: bold;
     color: var(--primary-color);
+    font-size: 1.1rem;
 }
 
 .appointment-info {
     flex-grow: 1;
+}
+
+.appointment-info h6 {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.appointment-info p {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .appointment-actions {
